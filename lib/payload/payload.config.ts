@@ -2,16 +2,16 @@ import path from "path";
 import cloudinaryPlugin from "payload-cloudinary-plugin/dist/plugins";
 import { buildConfig } from "payload/config";
 import { Media } from "./collections/media";
-import PortfolioCategories from "./collections/portfolio-category";
-import PortfolioItems from "./collections/portfolio-item";
-import Users from "./collections/users";
+import { PortfolioCategory } from "./collections/portfolio-category";
+import { PortfolioItem } from "./collections/portfolio-item";
+import { User } from "./collections/user";
 import { Settings } from "./globals/Settings";
 
 export default buildConfig({
   admin: {
-    user: Users.slug,
+    user: User.slug,
   },
-  collections: [Users, PortfolioItems, PortfolioCategories, Media],
+  collections: [User, PortfolioItem, PortfolioCategory, Media],
   globals: [Settings],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),

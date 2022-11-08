@@ -1,8 +1,8 @@
 import { CollectionConfig } from "payload/types";
 import { Media } from "./media";
-import PortfolioCategory from "./portfolio-category";
+import { PortfolioCategory } from "./portfolio-category";
 
-const PortfolioItems: CollectionConfig = {
+export const PortfolioItem: CollectionConfig = {
   slug: "portfolio-items",
   access: {
     read: () => true,
@@ -71,5 +71,3 @@ const PortfolioItems: CollectionConfig = {
     },
   ],
 };
-
-export default PortfolioItems;

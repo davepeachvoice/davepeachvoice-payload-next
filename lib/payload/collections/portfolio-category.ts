@@ -1,6 +1,6 @@
 import { CollectionConfig } from "payload/types";
 
-const PortfolioCategories: CollectionConfig = {
+export const PortfolioCategory: CollectionConfig = {
   slug: "portfolio-categories",
   access: {
     read: () => true,
@@ -21,5 +21,3 @@ const PortfolioCategories: CollectionConfig = {
     },
   ],
 };
-
-export default PortfolioCategories;

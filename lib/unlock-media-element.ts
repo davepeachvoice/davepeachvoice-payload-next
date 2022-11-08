@@ -5,9 +5,10 @@
  * https://curtisrobinson.medium.com/how-to-auto-play-audio-in-safari-with-javascript-21d50b0a2765
  */
 export function constructUnlockedMediaElement() {
-  const localMediaElement = document.createElement('audio');
+  const localMediaElement = document.createElement("audio");
 
   // this will fail, so we catch it so that the user doesn't see it in the browser logs
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   localMediaElement.play().catch(() => {});
   localMediaElement.pause();
   localMediaElement.currentTime = 0;
