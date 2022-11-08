@@ -27,7 +27,7 @@
 
 import React from 'react';
 import { FaMicrophone, FaPauseCircle } from 'react-icons/fa';
-import { attributes as HomeContentAttributes } from '../../../../../content/home.md';
+import { attributes as HomeContentAttributes } from '../../../../content/home.md';
 import AudioVisualizer from './AudioVisualizer';
 
 export default function AudioDataContainer() {

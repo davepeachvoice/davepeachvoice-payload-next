@@ -1,7 +1,7 @@
 import {
   attributes as ServicesAttributes,
   react as ServicesContent,
-} from '../../../content/services.md';
+} from '../../content/services.md';
 import CloudinaryImage from '../../components/cloudinary-image';
 import { ContactForm } from '../../components/pages/Services/Form';
 import { importServices } from '../../components/services/service-data';

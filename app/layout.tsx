@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { FC } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import SocialIcons from '../components/SocialIcons';
-import '../globals.css';
+import '../styles/globals.css'
 
 interface Props {
   title: string;

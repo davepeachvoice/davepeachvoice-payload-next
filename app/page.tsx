@@ -1,6 +1,6 @@
-import { importPortfolioItems } from '../../src/import-portfolio-data';
 import HomeHero from '../components/HomeHero';
 import Players from '../components/Media/Players';
+import { importPortfolioItems } from '../import-portfolio-data';
 import { comparePriorities } from '../lib/compare-priorities';
 
 export default async function Index() {

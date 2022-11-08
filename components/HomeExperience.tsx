@@ -1,4 +1,4 @@
-import { react as HomeContent } from '../../content/home.md';
+import { react as HomeContent } from '../content/home.md';
 
 export default function HomeExperience() {
   return (
