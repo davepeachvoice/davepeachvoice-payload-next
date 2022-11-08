@@ -1,0 +1,17 @@
+{
+  "version": "0.2",
+  "ignorePaths": [],
+  "dictionaryDefinitions": [],
+  "dictionaries": [],
+  "words": [
+    "bazaarvoice",
+    "headlessui",
+    "nextjs",
+    "shoppable",
+    "superjson"
+  ],
+  "ignoreWords": [
+    "pdpatf"
+  ],
+  "import": []
+}

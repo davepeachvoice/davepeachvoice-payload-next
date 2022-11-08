@@ -1,0 +1,37 @@
+{
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.suggest.completeFunctionCalls": true,
+  "typescript.surveys.enabled": false,
+  "npm.autoDetect": "on",
+  "git.inputValidationLength": 1000,
+  "git.inputValidationSubjectLength": 100,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "files.watcherExclude": {
+    ".git": true,
+    "node_modules": true
+  },
+  "files.exclude": {
+    // we hide these so that users don't try to edit them; they're just copies of the root .env file
+    "payload/.env": true,
+    "next/.env": true,
+    ".storybook": true,
+    "stories": true
+  },
+  "cSpell.words": [
+    "launchedla"
+  ],
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}
