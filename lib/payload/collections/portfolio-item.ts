@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload/types";
-import PortfolioCategory from "./portfolio-categories";
+import { Media } from "./media";
+import PortfolioCategory from "./portfolio-category";
 
 const PortfolioItems: CollectionConfig = {
   slug: "portfolio-items",
@@ -7,7 +8,7 @@ const PortfolioItems: CollectionConfig = {
     read: () => true,
   },
   admin: {
-    useAsTitle: "someField",
+    useAsTitle: "title",
   },
   fields: [
     {
@@ -33,15 +34,28 @@ const PortfolioItems: CollectionConfig = {
       ],
     },
     {
-      name: "media",
-      label: "Media",
+      name: "audio",
+      label: "Audio",
+      type: "relationship",
+      relationTo: Media.slug,
+      admin: {
+        condition: (_data, siblingData) => siblingData.media_type === "audio",
+      },
+    },
+    {
+      name: "video_url",
+      label: "Video URL",
       type: "text",
-      required: true,
+      admin: {
+        description: "YouTube link to embed",
+        condition: (_data, siblingData) => siblingData.media_type === "video",
+      },
     },
     {
       name: "thumbnail",
       label: "Thumbnail",
-      type: "text",
+      type: "relationship",
+      relationTo: Media.slug,
       required: true,
     },
     {

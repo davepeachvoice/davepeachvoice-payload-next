@@ -1,9 +1,10 @@
-import globalPayload, { Payload } from "payload";
 import express from "express";
 import path from "path";
-import payloadConfig from "./payload.config";
+import globalPayload, { Payload } from "payload";
+import { mediaManagement } from "payload-cloudinary-plugin";
 import validate from "payload/dist/config/validate";
 import Logger from "payload/dist/utilities/logger";
+import payloadConfig from "./payload.config";
 
 // https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
 declare global {
@@ -18,13 +19,10 @@ function initPayload() {
   // Build config
 
   // Path to config to be used in webpack in development environment
-  // @ts-ignore
   const configPath =
     process.env.NODE_ENV !== "production"
-      // @ts-ignore
       ? path.resolve(process.env.INIT_CWD, `lib/payload/payload.config.ts`)
       : path.resolve(__dirname, "./payload.config.ts");
-  // @ts-ignore
   const validatedConfig = validate(payloadConfig, Logger());
   const finalConfig = {
     ...validatedConfig,
@@ -37,14 +35,14 @@ function initPayload() {
 
   // Setup express app
   const expressApp = express();
+  expressApp.use(mediaManagement());
 
   // Initialize Payload
   globalPayload.init({
-    // @ts-ignore
     secret: process.env.PAYLOAD_SECRET,
-    // @ts-ignore
     mongoURL: process.env.MONGODB_URI,
     express: expressApp,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     validatedConfig: finalConfig,
     onInit: () => {
