@@ -1,5 +1,5 @@
-import { payload } from "../../lib/payload";
 import { NextApiRequest, NextApiResponse } from "next";
+import { payload } from "../../lib/payload";
 
 export const config = {
   api: {
@@ -10,8 +10,9 @@ export const config = {
     // In development server we serve assets through express webpack endpoint.
     responseLimit: false,
   },
-}
+};
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  return payload.express(req, res)
+  console.log("Received request on Payload route");
+  return payload.express(req, res);
 }
