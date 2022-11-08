@@ -55,7 +55,7 @@ interface Props {
 }
 
 export default function AudioVisualizer(props: Props) {
-  const [frequencyBandArray] = React.useState([...Array(25).keys()]);
+  const [frequencyBandArray] = React.useState(Array.from(Array(25).keys()));
   const amplitudeValues = React.useRef(null);
 
   useAnimationFrame(() => {

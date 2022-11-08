@@ -45,6 +45,7 @@ function initPayload() {
     // @ts-ignore
     mongoURL: process.env.MONGODB_URI,
     express: expressApp,
+    // @ts-ignore
     validatedConfig: finalConfig,
     onInit: () => {
       globalPayload.logger.info(
