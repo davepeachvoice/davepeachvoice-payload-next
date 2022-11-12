@@ -11,7 +11,7 @@ export interface Props {
 
 const PortfolioItems: FC<Props> = ({ items, setPlayingPortfolioItem }) => {
   return (
-    <div className='grid grid-rows-3 grid-flow-col gap-4'>
+    <div className="grid grid-flow-col grid-cols-3 gap-4">
       {items.map((item) => (
         <Card
           key={item.title}

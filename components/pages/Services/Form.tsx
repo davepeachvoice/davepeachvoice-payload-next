@@ -50,20 +50,20 @@ export function ContactForm(props: Props) {
   }
 
   return (
-    <div className='max-w-xl mx-auto bg-white'>
+    <div className="mx-auto max-w-xl bg-white">
       <form
         // value={value}
         // onChange={(e) => setValue(e.target)}
         onReset={() => setValue(defaultValue)}
         onSubmit={handleSubmit}
-        data-netlify='true'
-        data-netlify-recaptcha='true'
-        name='BasicServiceRequest'
+        data-netlify="true"
+        data-netlify-recaptcha="true"
+        name="BasicServiceRequest"
       >
-        <div className='visible lg:invisible'>
+        <div className="visible lg:invisible">
           <select
-            name='type'
-            placeholder='Select a Service'
+            name="type"
+            placeholder="Select a Service"
             value={value.type}
             onChange={(e) => {
               setSelectedService(e.currentTarget.value);
@@ -76,7 +76,7 @@ export function ContactForm(props: Props) {
             ))}
           </select>
         </div>
-        <div className='invisible lg:visible'>
+        <div className="invisible lg:visible">
           <HorizontalSelector
             services={props.services}
             selectedService={selectedService}
@@ -87,7 +87,7 @@ export function ContactForm(props: Props) {
           ></HorizontalSelector>
         </div>
 
-        <div className='h-12' />
+        <div className="h-12" />
 
         <div>
           <RenderFormBody
@@ -156,13 +156,19 @@ interface HorizontalSelectorProps {
 
 function HorizontalSelector(props: HorizontalSelectorProps) {
   return (
-    <div className='flex gap-4 justify-center align-center'>
+    <div className="align-center flex justify-center gap-4">
       {props.services.map((item) => (
         <div
           className={classNames(
-            'w-full border border-black align-center justify-center cursor-pointer',
+            'align-center flex min-h-0 w-full min-w-0 max-w-full cursor-pointer flex-col content-center items-center justify-center border border-black',
             props.selectedService === item.title ? 'bg-[#eee]' : 'bg-gray'
           )}
+          style={{
+            boxSizing: 'border-box',
+            backgroundColor: 'rgb(100, 101, 105)',
+            color: 'rgb(238, 238, 238)',
+            border: '1px solid rgb(0, 0, 0)',
+          }}
           key={item.title}
           onClick={() => {
             if (props.selectedService !== item.title) {
@@ -230,8 +236,8 @@ function Step0(props: Step0Props) {
     <div style={{ display: props.visible ? undefined : 'none' }}>
       <StepHeader text={props.step0Header}></StepHeader>
       <FormTextArea></FormTextArea>
-      <div className='align-bottom'>
-        <FormButton onClick={props.readyToNavigateToNextStep} label='Next' />
+      <div className="align-bottom">
+        <FormButton onClick={props.readyToNavigateToNextStep} label="Next" />
       </div>
     </div>
   );
@@ -252,12 +258,12 @@ function Step1(props: Step1Props) {
   return (
     <div style={{ display: props.visible ? undefined : 'none' }}>
       <StepHeader text={props.step1Header}></StepHeader>
-      <label htmlFor='name'>Name</label>
-      <input name='email' required></input>
-      <label htmlFor='name'>Email</label>
-      <input name='email' required></input>
-      <label htmlFor='attribution'>Attribution</label>
-      <select name='attribution' placeholder='Select'>
+      <label htmlFor="name">Name</label>
+      <input name="email" required></input>
+      <label htmlFor="name">Email</label>
+      <input name="email" required></input>
+      <label htmlFor="attribution">Attribution</label>
+      <select name="attribution" placeholder="Select">
         {props.attributionFieldOptions.map((option) => (
           <option key={option}>{option}</option>
         ))}
@@ -266,20 +272,20 @@ function Step1(props: Step1Props) {
         <Recaptcha
           ref={props.recaptchaRef}
           sitekey={RECAPTCHA_KEY}
-          size='normal'
+          size="normal"
           onChange={() => props.setSubmitButtonEnabled(true)}
         />
       </div>
-      <div className='h-5' />
-      <div className='flex flex-row justify-between'>
+      <div className="h-5" />
+      <div className="flex flex-row justify-between">
         <FormButton
-          label='Back'
+          label="Back"
           unfilled
           onClick={props.readyToNavigateToPreviousStep}
         />
         <FormButton
-          label='Submit'
-          type='submit'
+          label="Submit"
+          type="submit"
           disabled={!props.submitButtonEnabled}
         />
       </div>
@@ -342,8 +348,8 @@ function FormTextArea(props: FormTextAreaProps) {
           backgroundColor: '#eee',
           color: '#444',
         }}
-        color='red'
-        name='request'
+        color="red"
+        name="request"
       ></textarea>
     </>
   );

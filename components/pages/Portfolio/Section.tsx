@@ -13,12 +13,13 @@ interface Props {
 }
 
 export default function Section(props: Props) {
+  if (props.items.length < 1) return null;
+
+  const id = props.name;
   return (
-    <div id={props.name} className='px-4' key={props.name}>
-      <div className='flex-row justify-between align-center mh-2'>
-        <a href={`#${props.name}`} color='white'>
-          <div className='text-lg'>{props.name}</div>
-        </a>
+    <div id={id} className="px-4" key={props.name}>
+      <div className="align-center mh-2 flex-row justify-between">
+        <div className="text-2xl text-white">{props.name}</div>
       </div>
       <PortfolioItems
         items={props.items}

@@ -1,10 +1,10 @@
-import express from "express";
-import path from "path";
-import globalPayload, { Payload } from "payload";
-import { mediaManagement } from "payload-cloudinary-plugin";
-import validate from "payload/dist/config/validate";
-import Logger from "payload/dist/utilities/logger";
-import payloadConfig from "./payload.config";
+import express from 'express';
+import path from 'path';
+import globalPayload, { Payload } from 'payload';
+import { mediaManagement } from 'payload-cloudinary-plugin';
+import validate from 'payload/dist/config/validate';
+import Logger from 'payload/dist/utilities/logger';
+import payloadConfig from './payload.config';
 
 // https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
 declare global {
@@ -15,14 +15,14 @@ declare global {
 export const payload = global.payload || initPayload();
 
 function initPayload() {
-  console.log("Initializing payload.");
+  console.log('Initializing payload.');
   // Build config
 
   // Path to config to be used in webpack in development environment
   const configPath =
-    process.env.NODE_ENV !== "production"
+    process.env.NODE_ENV !== 'production'
       ? path.resolve(process.env.INIT_CWD, `lib/payload/payload.config.ts`)
-      : path.resolve(__dirname, "./payload.config.ts");
+      : path.resolve(__dirname, './payload.config.ts');
   const validatedConfig = validate(payloadConfig, Logger());
   const finalConfig = {
     ...validatedConfig,
@@ -55,4 +55,4 @@ function initPayload() {
   return globalPayload;
 }
 
-if (process.env.NODE_ENV !== "production") global.payload = payload;
+if (process.env.NODE_ENV !== 'production') global.payload = payload;

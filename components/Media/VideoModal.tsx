@@ -49,16 +49,16 @@ export default function VideoModal(props: Props) {
           style={{ alignItems: 'center', justifyContent: 'center' }}
         >
           <div style={{ top: 0, right: 0, position: 'absolute' }}>
-            <GrFormClose size='3em' onClick={closeModal} />
+            <GrFormClose size="3em" onClick={closeModal} />
           </div>
 
-          <div className='m-6 w-96 h-48'>
+          <div className="m-6 h-48 w-96">
             <ReactPlayer
               url={currentVideoSource}
               playing={true}
               controls={true}
-              width='100%'
-              height='100%'
+              width="100%"
+              height="100%"
             />
           </div>
         </div>

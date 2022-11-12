@@ -1,18 +1,18 @@
-import path from "path";
-import { CollectionConfig } from "payload/types";
+import path from 'path';
+import { CollectionConfig } from 'payload/types';
 
 export const Media: CollectionConfig = {
-  slug: "media",
+  slug: 'media',
   upload: {
-    staticDir: path.resolve(__dirname, "../../media"),
+    staticDir: path.resolve(__dirname, '../../media'),
   },
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: "alt",
-      type: "text",
+      name: 'alt',
+      type: 'text',
       required: true,
     },
   ],

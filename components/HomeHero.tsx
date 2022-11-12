@@ -5,14 +5,15 @@ export default function HomeHero() {
   // const blurDataUrl = buildBlurDataUrl(imageId);
   return (
     <div>
-      <div className='relative h-[50vh]'>
+      <div className="relative h-[50vh]">
         <CloudinaryImage
-          className='object-contain'
+          className="object-contain"
           fill
           src={imageId}
-          alt='Dave Peach announcing at March Madness in 2021'
+          alt="Dave Peach announcing at March Madness in 2021"
           // placeholder='blur'
           // blurDataURL={blurDataUrl}
+          priority
         />
       </div>
     </div>

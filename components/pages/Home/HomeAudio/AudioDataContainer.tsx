@@ -81,9 +81,9 @@ export default function AudioDataContainer() {
       <div>
         <div>
           {isPlaying && <AudioVisualizer getFrequencyData={getFrequencyData} />}
-          <div className='h-full'>
+          <div className="h-full">
             <div
-              className='text-base md:text-xl m-6 align-center'
+              className="align-center m-6 text-base md:text-xl"
               // level={1}
               // size='large'
               // margin='large'
@@ -94,14 +94,14 @@ export default function AudioDataContainer() {
           </div>
         </div>
       </div>
-      <div className='flex-row justify-between items-center align-center h-12 bg-white'>
+      <div className="align-center h-12 flex-row items-center justify-between bg-white">
         <div style={{ paddingLeft: '20px' }}>
-          <div className='md:text-lg'>
+          <div className="md:text-lg">
             {HomeContentAttributes.hero_sub_text}
           </div>
         </div>
         <div
-          className='tagline-container'
+          className="tagline-container"
           style={{ paddingRight: '20px' }}
           onClick={toggleAudio}
         >
@@ -114,14 +114,14 @@ export default function AudioDataContainer() {
             }}
           >
             <div style={{ textAlign: 'right' }}>
-              <div className='md:text-lg'>
+              <div className="md:text-lg">
                 {HomeContentAttributes.audio_sample_text}
               </div>
             </div>
             {isPlaying ? (
-              <FaPauseCircle color='white' />
+              <FaPauseCircle color="white" />
             ) : (
-              <FaMicrophone color='white' />
+              <FaMicrophone color="white" />
             )}
           </div>
         </div>

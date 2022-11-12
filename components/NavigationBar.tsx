@@ -6,11 +6,11 @@ const orbitron = Orbitron({ subsets: ['latin'] });
 
 const NavigationBar = () => {
   return (
-    <div className='bg-black py-6 px-6 flex justify-between items-center'>
+    <div className="flex items-center justify-between bg-black py-6 px-6">
       <Link
-        href='/'
+        href="/"
         className={classNames(
-          'text-base md:text-2xl text-orange-500',
+          'text-base text-orange-500 md:text-2xl',
           orbitron.className
         )}
         style={{ lineHeight: 1 }}
@@ -20,7 +20,7 @@ const NavigationBar = () => {
         Professional Voice
       </Link>
       <div>
-        <div className='justify-end'>
+        <div className="justify-end">
           <div
           // a11yTitle='Navigation Menu'
           // dropProps={{ align: { top: 'bottom', right: 'right' } }}
@@ -45,11 +45,11 @@ const NavigationBar = () => {
           // ]}
           ></div>
         </div>
-        <div className='flex justify-end flex-row gap-6'>
-          <Link className='text-orange-400 text-lg' href='/portfolio'>
+        <div className="flex flex-row justify-end gap-6">
+          <Link className="text-lg text-orange-400" href="/portfolio">
             Portfolio
           </Link>
-          <Link className='text-orange-400 text-lg' href='/services'>
+          <Link className="text-lg text-orange-400" href="/services">
             Services
           </Link>
         </div>

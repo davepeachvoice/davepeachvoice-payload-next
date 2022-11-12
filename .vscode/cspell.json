@@ -9,10 +9,9 @@
     "headlessui",
     "nextjs",
     "shoppable",
-    "superjson"
+    "superjson",
+    "tailwindcss"
   ],
-  "ignoreWords": [
-    "pdpatf"
-  ],
+  "ignoreWords": ["pdpatf"],
   "import": []
 }

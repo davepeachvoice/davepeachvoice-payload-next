@@ -1,0 +1,5 @@
+prettier.config.cjs
+node_modules
+.next
+public/admin
+.vercel

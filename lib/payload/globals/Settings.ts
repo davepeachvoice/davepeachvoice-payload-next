@@ -1,10 +1,10 @@
-import { GlobalConfig } from "payload/types";
-import Example from "../../../components/Example";
+import { GlobalConfig } from 'payload/types';
+import Example from '../../../components/Example';
 
 export const Settings: GlobalConfig = {
-  slug: "settings",
+  slug: 'settings',
   admin: {
-    group: "Settings",
+    group: 'Settings',
   },
   access: {
     read: () => true,
@@ -12,20 +12,20 @@ export const Settings: GlobalConfig = {
   },
   fields: [
     {
-      name: "title",
-      type: "text",
+      name: 'title',
+      type: 'text',
       required: false,
-      defaultValue: "foo",
+      defaultValue: 'foo',
     },
     {
-      name: "title2",
-      type: "text",
+      name: 'title2',
+      type: 'text',
       required: false,
-      defaultValue: "foo2",
+      defaultValue: 'foo2',
     },
     {
-      name: "example",
-      type: "ui",
+      name: 'example',
+      type: 'ui',
       admin: {
         components: {
           Field: Example,

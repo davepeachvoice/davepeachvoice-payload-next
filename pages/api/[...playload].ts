@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { payload } from "../../lib/payload";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { payload } from '../../lib/payload';
 
 export const config = {
   api: {
@@ -13,6 +13,6 @@ export const config = {
 };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log("Received request on Payload route");
+  console.log('Received request on Payload route');
   return payload.express(req, res);
 }

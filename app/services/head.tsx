@@ -7,7 +7,7 @@ const Head: FC = () => {
   return (
     <>
       <title>{title}</title>
-      <meta property='og:title' content={title}></meta>
+      <meta property="og:title" content={title}></meta>
     </>
   );
 };

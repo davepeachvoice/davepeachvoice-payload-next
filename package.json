@@ -10,10 +10,11 @@
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png}\" dist/",
     "generate:types": "cross-env PAYLOAD_CONFIG_PATH=lib/payload/payload.config.ts payload generate:types",
     "generate:graphQLSchema": "PAYLOAD_CONFIG_PATH=lib/payload/payload.config.ts payload generate:graphQLSchema",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "@next/font": "^13.0.1",
+    "@next/font": "^13.0.3",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
@@ -23,9 +24,9 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "next": "^13.0.2",
+    "next": "^13.0.3",
     "payload": "1.1.18",
-    "payload-cloudinary-plugin": "^0.0.4",
+    "payload-cloudinary-plugin": "^0.0.9",
     "raw-loader": "^4.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -47,7 +48,7 @@
     "@typescript-eslint/parser": "^5.42.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.26.0",
-    "eslint-config-next": "^13.0.1",
+    "eslint-config-next": "^13.0.3",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-webpack": "^0.13.2",
     "eslint-plugin-prettier": "^4.2.1",
@@ -55,10 +56,11 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "frontmatter-markdown-loader": "^3.7.0",
     "patch-package": "^6.5.0",
-    "postcss": "^8.4.18",
+    "postcss": "^8.4.19",
     "prettier": "^2.7.1",
-    "tailwindcss": "^3.2.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "tailwindcss": "^3.2.4",
     "typescript": "^4.8.4",
-    "vercel": "^28.4.15"
+    "vercel": "^28.4.17"
   }
 }

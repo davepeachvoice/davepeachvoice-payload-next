@@ -3,7 +3,7 @@
   "typescript.validate.enable": true,
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.surveys.enabled": false,
   "npm.autoDetect": "on",
@@ -30,8 +30,6 @@
     ".storybook": true,
     "stories": true
   },
-  "cSpell.words": [
-    "launchedla"
-  ],
+  "cSpell.words": ["launchedla"],
   "typescript.enablePromptUseWorkspaceTsdk": true
 }

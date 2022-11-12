@@ -89,7 +89,7 @@ export default function AudioWaveform(props: Props) {
 
   return (
     <div
-      className='App'
+      className="App"
       style={{
         height: `${HEIGHT}px`,
         position: 'fixed',
@@ -122,9 +122,9 @@ export default function AudioWaveform(props: Props) {
           }}
         >
           {playing ? (
-            <FaPauseCircle style={{ marginLeft: '0' }} size='medium' />
+            <FaPauseCircle style={{ marginLeft: '0' }} size="medium" />
           ) : (
-            <FaPlayCircle style={{ marginLeft: '5px' }} size='medium' />
+            <FaPlayCircle style={{ marginLeft: '5px' }} size="medium" />
           )}
         </div>
       </div>
@@ -138,7 +138,7 @@ export default function AudioWaveform(props: Props) {
             plugins={[]}
           >
             <WaveForm
-              id='waveform'
+              id="waveform"
               barWidth={1}
               hideScrollbar={true}
               responsive={true}
@@ -147,8 +147,8 @@ export default function AudioWaveform(props: Props) {
               barGap={1}
               normalize={true}
               minPxPerSec={100}
-              backend='MediaElement'
-              waveColor='white'
+              backend="MediaElement"
+              waveColor="white"
             ></WaveForm>
           </WaveSurfer>
         </Suspense>
