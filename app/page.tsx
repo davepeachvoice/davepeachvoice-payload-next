@@ -1,21 +1,27 @@
 import HomeHero from '../components/HomeHero';
 import Players from '../components/Media/Players';
-import { importPortfolioItems } from '../import-portfolio-data';
 import { comparePriorities } from '../lib/compare-priorities';
+import { getHomePortfolioItems } from '../lib/payload-gql-client';
 
 export default async function Index() {
-  const portfolioItemsMarkdownData = await importPortfolioItems();
-
-  const portfolioItems = portfolioItemsMarkdownData.map(
-    (portfolioItemMarkdownData) => portfolioItemMarkdownData.attributes
+  const portfolioItems = await getHomePortfolioItems();
+  const sortedPortfolioItems = [...portfolioItems.PortfolioItems.docs].sort(
+    comparePriorities
   );
+  const sortedTransformedPortfolioItems = sortedPortfolioItems.map((item) => ({
+    ...item,
+    category: item.category.title,
+  }));
 
-  portfolioItems.sort(comparePriorities);
+  console.debug(
+    'sortedTransformedPortfolioItems',
+    JSON.stringify(sortedTransformedPortfolioItems)
+  );
 
   return (
     <>
       <HomeHero />
-      <Players portfolioItems={portfolioItems} />
+      <Players portfolioItems={sortedTransformedPortfolioItems} />
     </>
   );
 }

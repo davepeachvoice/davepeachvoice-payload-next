@@ -3,9 +3,8 @@ export interface PortfolioItemInterface {
   media_type: 'audio' | 'video';
   media_source: string;
   thumbnail_source: string;
-  homepage_visible: true;
+  homepage_visible: boolean;
   priority: number;
-  type: string;
   category: string;
 }
 

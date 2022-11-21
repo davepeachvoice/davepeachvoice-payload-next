@@ -1,5 +1,7 @@
 ## Setup
 
+If you're using vscode, install the workspace's recommended vscode extensions.
+
 ```
 # setup environment variables
 mv .env.example .env

@@ -1,0 +1,17 @@
+query getHomePortfolioItems {
+  PortfolioItems(where: { homepage_visible: { equals: true } }) {
+    docs {
+      __typename
+      id
+      priority
+      title
+      media_type
+      media_source
+      thumbnail_source
+      homepage_visible
+      category {
+        title
+      }
+    }
+  }
+}

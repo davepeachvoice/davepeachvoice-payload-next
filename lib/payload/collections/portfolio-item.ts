@@ -34,6 +34,18 @@ export const PortfolioItem: CollectionConfig = {
       ],
     },
     {
+      name: 'media_source',
+      label: 'Media Source',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'thumbnail_source',
+      label: 'Thumbnail Source',
+      type: 'text',
+      required: true,
+    },
+    {
       name: 'audio',
       label: 'Audio',
       type: 'relationship',
@@ -62,12 +74,19 @@ export const PortfolioItem: CollectionConfig = {
       name: 'homepage_visible',
       label: 'Visible on Homepage',
       type: 'checkbox',
+      required: true,
     },
     {
       name: 'category',
       label: 'Category',
       type: 'relationship',
       relationTo: PortfolioCategory.slug,
+    },
+    {
+      name: 'priority',
+      label: 'Priority',
+      type: 'number',
+      required: true,
     },
   ],
 };

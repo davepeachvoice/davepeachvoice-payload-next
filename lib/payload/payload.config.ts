@@ -17,7 +17,10 @@ export default buildConfig({
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
   graphQL: {
-    schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
+    schemaOutputFile: path.resolve(
+      __dirname,
+      '../../graphql/payload/schema.graphql'
+    ),
   },
-  plugins: [cloudinaryPlugin()],
+  plugins: [cloudinaryPlugin() as any],
 });

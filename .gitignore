@@ -40,3 +40,6 @@ next-env.d.ts
 
 # public
 public/admin
+
+graphql/payload/schema.graphql
+graphql/payload/generated.ts

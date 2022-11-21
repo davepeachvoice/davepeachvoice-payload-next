@@ -4,14 +4,18 @@
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
-    "bazaarvoice",
     "cloudinary",
+    "codegen"
+  ],
+  "ignoreWords": [
+    "copyfiles",
+    "davepeachvoice",
+    "pdpatf",
+    "wavesurfer",
+    "tailwindcss",
     "headlessui",
     "nextjs",
-    "shoppable",
-    "superjson",
-    "tailwindcss"
+    "superjson"
   ],
-  "ignoreWords": ["pdpatf"],
   "import": []
 }
