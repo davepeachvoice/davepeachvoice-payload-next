@@ -7,4 +7,4 @@ attribution_field_options:
   - Word of mouth
 ---
 
-Reach out and let me know where I can provide value to your business.
+Reach out and tell me how I can provide value to your business.

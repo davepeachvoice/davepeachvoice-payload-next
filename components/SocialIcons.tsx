@@ -9,7 +9,6 @@ export default function SocialIcons() {
         target="_blank"
         rel="noreferrer"
         className="items-center rounded-full p-2"
-        style={{ backgroundColor: '#111130' }}
       >
         <FaTwitterSquare size="1.75em" color="white" />
       </Link>
@@ -18,7 +17,6 @@ export default function SocialIcons() {
         target="_blank"
         rel="noreferrer"
         className="items-center rounded-full p-2"
-        style={{ backgroundColor: '#111130' }}
       >
         <FaFacebookSquare size="1.75em" color="white" />
       </Link>
@@ -27,7 +25,6 @@ export default function SocialIcons() {
         target="_blank"
         rel="noreferrer"
         className="items-center rounded-full p-2"
-        style={{ backgroundColor: '#111130' }}
       >
         <FaLinkedin size="1.75em" color="white" />
       </Link>

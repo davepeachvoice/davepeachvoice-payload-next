@@ -17,12 +17,16 @@ export default async function Services() {
   services.sort(comparePriorities);
 
   return (
-    <main className="items-center p-4">
-      <div className="container justify-center">
+    <main>
+      <div className="h-6" />
+
+      <div className="container mx-auto max-w-xl text-white">
         <ServicesContent />
       </div>
 
-      <div className="container">
+      <div className="h-3" />
+
+      <div className="container mx-auto max-w-xl">
         {/* allow shrinking on smaller screens */}
         <div className="w-full">
           <div className="w-full justify-center">
@@ -42,7 +46,10 @@ export default async function Services() {
           </div>
         </div>
       </div>
-      <div className="container flex-row justify-evenly gap-2 p-4">
+
+      <div className="h-6" />
+
+      <div className="container mx-auto max-w-xl">
         <div className="relative min-h-[50vh] w-full">
           <CloudinaryImage
             className="object-contain"
@@ -55,13 +62,18 @@ export default async function Services() {
           />
         </div>
       </div>
-      <label htmlFor="email">
-        Email Dave
-        <a
-          className="mt-4 w-full"
-          href="mailto:davepeachvoice@gmail.com"
-          color="blue"
-        />
+
+      <div className="h-6" />
+
+      <label htmlFor="email" className="flex w-full justify-center">
+        <div className="rounded-full bg-neutral-200 px-6 py-2">
+          Email Dave
+          <a
+            className="mt-4 w-full"
+            href="mailto:davepeachvoice@gmail.com"
+            color="blue"
+          />
+        </div>
       </label>
     </main>
   );

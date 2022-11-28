@@ -13,6 +13,5 @@ export const config = {
 };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log('Received request on Payload route');
   return payload.express(req, res);
 }

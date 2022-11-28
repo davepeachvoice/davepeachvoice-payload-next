@@ -2,24 +2,21 @@
 
 If you're using vscode, install the workspace's recommended vscode extensions.
 
-```
+```sh
 # setup environment variables
 mv .env.example .env
 
-# start local mongodb server
-docker-compose up
-
 # install packages
-npm install
+yarn install
 
 # start dev server
 npm run dev
 
-# run production build
-npm run build && npm run start
+# graphql codegen based on served schema
+yarn run generate:graphql
 
-# build and deploy to vercel
-vercel
+# run production build
+yarn run build && yarn run start
 ```
 
 ## Notes

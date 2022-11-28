@@ -13,11 +13,6 @@ export default async function Index() {
     category: item.category.title,
   }));
 
-  console.debug(
-    'sortedTransformedPortfolioItems',
-    JSON.stringify(sortedTransformedPortfolioItems)
-  );
-
   return (
     <>
       <HomeHero />
