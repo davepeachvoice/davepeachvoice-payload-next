@@ -5,7 +5,8 @@
   "dictionaries": [],
   "words": [
     "cloudinary",
-    "codegen"
+    "codegen",
+    "recaptcha"
   ],
   "ignoreWords": [
     "copyfiles",

@@ -1,17 +1,9 @@
 'use client';
 
-import classNames from 'classnames';
 import React, { useRef, useState } from 'react';
 import Recaptcha from 'react-google-recaptcha';
+import SelectDropdown from '../../design-system/molecules/select-dropdown';
 import { ServiceInterface } from '../../services/ServiceInterface';
-
-const defaultValue: FormState = {
-  type: '',
-  name: '',
-  email: '',
-  request: '',
-  attribution: '',
-};
 
 interface FormState {
   type: string;
@@ -20,6 +12,14 @@ interface FormState {
   request?: string;
   attribution?: string;
 }
+
+const defaultValue: FormState = {
+  type: '',
+  name: '',
+  email: '',
+  request: '',
+  attribution: '',
+};
 
 const RECAPTCHA_KEY = '6Lf7CAMcAAAAACNXsN6-hnIxztE0lFyltbvAOnKu';
 
@@ -35,9 +35,9 @@ export function ContactForm(props: Props) {
   const [value, setValue] = useState<FormState>(defaultValue);
   const recaptchaRef = useRef<Recaptcha>();
   const [submitButtonEnabled, setSubmitButtonEnabled] = useState(false);
-  const [fullFormVisible, setFullFormVisible] = React.useState(false);
-  const [selectedService, setSelectedService] =
-    React.useState<string>(undefined);
+  const [fullFormVisible] = React.useState(false);
+  const [selectedServiceTitle, setSelectedServiceTitle] =
+    useState<string>(undefined);
   const [formStep, setFormStep] = useState(0);
   const [formSubmissionMessage, setFormSubmissionMessage] = useState(undefined);
 
@@ -49,48 +49,33 @@ export function ContactForm(props: Props) {
     setFormStep(formStep - 1);
   }
 
+  const options = props.services.map((service) => ({
+    id: service.title,
+    displayName: service.title,
+  }));
+
   return (
-    <div className="mx-auto max-w-xl bg-white">
+    <div className="mx-auto max-w-xl">
       <form
-        // value={value}
-        // onChange={(e) => setValue(e.target)}
         onReset={() => setValue(defaultValue)}
         onSubmit={handleSubmit}
         data-netlify="true"
         data-netlify-recaptcha="true"
         name="BasicServiceRequest"
       >
-        <div className="visible lg:invisible">
-          <select
+        <div className="z-10">
+          <SelectDropdown
+            options={options}
+            selectedId={selectedServiceTitle}
+            setSelectedId={(value) => setSelectedServiceTitle(value)}
             name="type"
-            placeholder="Select a Service"
-            value={value.type}
-            onChange={(e) => {
-              setSelectedService(e.currentTarget.value);
-              setFullFormVisible(true);
-            }}
-            // clear={{ label: 'Clear selection' }}
-          >
-            {props.services.map((service) => (
-              <option key={service.title}>{service.title}</option>
-            ))}
-          </select>
-        </div>
-        <div className="invisible lg:visible">
-          <HorizontalSelector
-            services={props.services}
-            selectedService={selectedService}
-            setSelectedService={setSelectedService}
-            setFullFormVisible={setFullFormVisible}
-            value={value}
-            setValue={setValue}
-          ></HorizontalSelector>
+          />
         </div>
 
         <div className="h-12" />
 
         <div>
-          <RenderFormBody
+          <FormBody
             visible={fullFormVisible}
             formStep={formStep}
             readyToNavigateToNextStep={readyToNavigateToNextStep}
@@ -145,50 +130,6 @@ export function ContactForm(props: Props) {
   }
 }
 
-interface HorizontalSelectorProps {
-  services: ServiceInterface[];
-  selectedService: string;
-  setSelectedService: React.Dispatch<React.SetStateAction<string>>;
-  setFullFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  value: FormState;
-  setValue: React.Dispatch<React.SetStateAction<FormState>>;
-}
-
-function HorizontalSelector(props: HorizontalSelectorProps) {
-  return (
-    <div className="align-center flex justify-center gap-4">
-      {props.services.map((item) => (
-        <div
-          className={classNames(
-            'align-center flex min-h-0 w-full min-w-0 max-w-full cursor-pointer flex-col content-center items-center justify-center border border-black',
-            props.selectedService === item.title ? 'bg-[#eee]' : 'bg-gray'
-          )}
-          style={{
-            boxSizing: 'border-box',
-            backgroundColor: 'rgb(100, 101, 105)',
-            color: 'rgb(238, 238, 238)',
-            border: '1px solid rgb(0, 0, 0)',
-          }}
-          key={item.title}
-          onClick={() => {
-            if (props.selectedService !== item.title) {
-              props.setValue({ ...props.value, type: item.title });
-              props.setSelectedService(item.title);
-              props.setFullFormVisible(true);
-            } else {
-              props.setValue({ ...props.value, type: undefined });
-              props.setSelectedService(undefined);
-              props.setFullFormVisible(false);
-            }
-          }}
-        >
-          {item.title}
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function encode(
   data: { 'form-name': string; 'g-recaptcha-response': string } & FormState
 ) {
@@ -212,7 +153,7 @@ interface RenderFormBodyInput {
   submissionMessage: string;
 }
 
-function RenderFormBody(input: RenderFormBodyInput) {
+function FormBody(input: RenderFormBodyInput) {
   return (
     <div style={{ display: input.visible ? undefined : 'none' }}>
       <Step0 {...input} visible={input.formStep === 0}></Step0>
