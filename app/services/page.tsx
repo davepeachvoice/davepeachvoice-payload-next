@@ -1,25 +1,21 @@
 import CloudinaryImage from '../../components/cloudinary-image';
 import { ContactForm } from '../../components/pages/Services/Form';
-import { importServices } from '../../components/services/service-data';
-import {
-  attributes as ServicesAttributes,
-  react as ServicesContent,
-} from '../../content/services.md';
+import { attributes as ServicesAttributes } from '../../content/services.md';
 import { comparePriorities } from '../../lib/compare-priorities';
+import { sdk } from '../../lib/payload-gql-client';
 
 export default async function Services() {
-  const servicesMarkdownData = await importServices();
+  const [pageData, servicesData] = await Promise.all([
+    sdk.getServicesPage(),
+    sdk.getServices(),
+  ]);
 
-  const services = servicesMarkdownData.map(
-    (localServiceMarkdownData) => localServiceMarkdownData.attributes
-  );
-
-  services.sort(comparePriorities);
+  servicesData.Services.docs.sort(comparePriorities);
 
   return (
     <main className="items-center p-4">
       <div className="container justify-center">
-        <ServicesContent />
+        {pageData.ServicesPage.mainBody}
       </div>
 
       <div className="container">
@@ -28,7 +24,7 @@ export default async function Services() {
           <div className="w-full justify-center">
             <div>
               <ContactForm
-                services={services}
+                services={servicesData.Services.docs}
                 step0Header={ServicesAttributes.step0_header}
                 step1Header={ServicesAttributes.step1_header}
                 attributionFieldPrompt={

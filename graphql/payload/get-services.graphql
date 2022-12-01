@@ -1,0 +1,8 @@
+query getServices {
+  Services {
+    docs {
+      title
+      priority
+    }
+  }
+}

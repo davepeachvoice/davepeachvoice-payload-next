@@ -3,4 +3,4 @@ import { getSdk } from '../graphql/payload/generated';
 
 const gqlClient = new GraphQLClient('http://localhost:3000/api/graphQL');
 
-export const { getHomePortfolioItems } = getSdk(gqlClient);
+export const sdk = getSdk(gqlClient);

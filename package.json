@@ -9,10 +9,11 @@
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=lib/payload/payload.config.ts payload build && rm -rf public/admin && mv build public/admin",
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png}\" dist/",
     "generate:types": "cross-env PAYLOAD_CONFIG_PATH=lib/payload/payload.config.ts payload generate:types",
-    "generate:graphQLSchema": "PAYLOAD_CONFIG_PATH=lib/payload/payload.config.ts payload generate:graphQLSchema",
+    "gqlgen": "run-s \"gqlgen:*\"",
+    "gqlgen:gql": "PAYLOAD_CONFIG_PATH=lib/payload/payload.config.ts payload generate:graphQLSchema",
+    "gqlgen:codegen": "graphql-codegen",
     "postinstall": "patch-package",
-    "format": "prettier --write .",
-    "generate:graphql": "graphql-codegen"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@next/font": "^13.0.3",
@@ -62,6 +63,7 @@
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "frontmatter-markdown-loader": "^3.7.0",
+    "npm-run-all": "^4.1.5",
     "patch-package": "^6.5.0",
     "postcss": "^8.4.19",
     "prettier": "^2.7.1",

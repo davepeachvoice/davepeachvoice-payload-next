@@ -4,12 +4,8 @@ import { PortfolioCategory } from './portfolio-category';
 
 export const PortfolioItem: CollectionConfig = {
   slug: 'portfolio-items',
-  access: {
-    read: () => true,
-  },
-  admin: {
-    useAsTitle: 'title',
-  },
+  access: { read: () => true },
+  admin: { useAsTitle: 'title' },
   fields: [
     {
       name: 'title',

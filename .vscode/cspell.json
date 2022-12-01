@@ -10,12 +10,13 @@
   "ignoreWords": [
     "copyfiles",
     "davepeachvoice",
-    "pdpatf",
-    "wavesurfer",
-    "tailwindcss",
+    "gqlgen",
     "headlessui",
     "nextjs",
-    "superjson"
+    "pdpatf",
+    "superjson",
+    "tailwindcss",
+    "wavesurfer"
   ],
   "import": []
 }
