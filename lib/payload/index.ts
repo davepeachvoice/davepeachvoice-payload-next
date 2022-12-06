@@ -21,7 +21,7 @@ function initPayload() {
   // Path to config to be used in webpack in development environment
   const configPath =
     process.env.NODE_ENV !== 'production'
-      ? path.resolve(process.env.INIT_CWD, `lib/payload/payload.config.ts`)
+      ? path.resolve(process.env.INIT_CWD!, `lib/payload/payload.config.ts`)
       : path.resolve(__dirname, './payload.config.ts');
   const validatedConfig = validate(payloadConfig, Logger());
   const finalConfig = {
@@ -39,8 +39,8 @@ function initPayload() {
 
   // Initialize Payload
   globalPayload.init({
-    secret: process.env.PAYLOAD_SECRET,
-    mongoURL: process.env.MONGODB_URI,
+    secret: process.env.PAYLOAD_SECRET!,
+    mongoURL: process.env.MONGODB_URI!,
     express: expressApp,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore

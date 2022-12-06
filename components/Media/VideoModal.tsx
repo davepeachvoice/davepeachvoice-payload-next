@@ -1,19 +1,17 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { GrFormClose } from 'react-icons/gr';
 import ReactPlayer from 'react-player';
-import { PortfolioItemInterface } from '../PortfolioItems/PortfolioItemInterface';
+import { PortfolioItemDataInterface } from '../PortfolioItems/PortfolioItemInterface';
 
 interface Props {
-  portfolioItem: PortfolioItemInterface;
-  setPortfolioItem: React.Dispatch<
-    React.SetStateAction<PortfolioItemInterface>
-  >;
+  portfolioItem: PortfolioItemDataInterface;
+  setPortfolioItem: (item: PortfolioItemDataInterface | undefined) => unknown;
 }
 
 export default function VideoModal(props: Props) {
-  const [currentVideoSource, setCurrentVideoSource] = useState<string>(null);
+  const [currentVideoSource, setCurrentVideoSource] = useState<string>();
   const [show, setShow] = useState(false);
 
   const openModal = useCallback(() => {
@@ -21,7 +19,7 @@ export default function VideoModal(props: Props) {
   }, []);
 
   const closeModal = useCallback(() => {
-    props.setPortfolioItem(null);
+    props.setPortfolioItem(undefined);
     setShow(false);
   }, [props]);
 

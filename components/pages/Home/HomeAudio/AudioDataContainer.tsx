@@ -31,8 +31,8 @@ import { attributes as HomeContentAttributes } from '../../../../content/home.md
 import AudioVisualizer from './AudioVisualizer';
 
 export default function AudioDataContainer() {
-  const audioFile = React.useRef<HTMLAudioElement>(undefined);
-  const audioData = React.useRef<AnalyserNode>(undefined);
+  const audioFile = React.useRef<HTMLAudioElement>();
+  const audioData = React.useRef<AnalyserNode>();
   const [isPlaying, setIsPlaying] = React.useState(false);
 
   function initializeAudioAnalyser() {
@@ -55,14 +55,15 @@ export default function AudioDataContainer() {
   }
 
   function pause() {
-    audioFile.current.pause();
+    audioFile.current?.pause();
     setIsPlaying(false);
   }
 
-  function getFrequencyData(styleAdjuster) {
+  function getFrequencyData(styleAdjuster: any) {
+    if (!audioData.current) return;
     const bufferLength = audioData.current.frequencyBinCount;
     const amplitudeArray = new Uint8Array(bufferLength);
-    audioData.current.getByteFrequencyData(amplitudeArray);
+    audioData.current?.getByteFrequencyData(amplitudeArray);
     styleAdjuster(amplitudeArray);
   }
 

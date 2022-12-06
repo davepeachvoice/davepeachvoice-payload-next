@@ -12,3 +12,9 @@ export type PortfolioItemDataInterface = Pick<
   PortfolioItemInterface,
   'title' | 'media_type' | 'media_source' | 'thumbnail_source'
 >;
+
+export interface PortfolioCategory {
+  title: string;
+  items: PortfolioItemDataInterface[];
+  priority: number;
+}

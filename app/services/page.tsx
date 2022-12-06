@@ -1,7 +1,7 @@
 import CloudinaryImage from '../../components/cloudinary-image';
 import { ContactForm } from '../../components/pages/Services/Form';
 import { attributes as ServicesAttributes } from '../../content/services.md';
-import { comparePriorities } from '../../lib/compare-priorities';
+import { isTruthy } from '../../lib/is-truthy';
 import { sdk } from '../../lib/payload-gql-client';
 
 export default async function Services() {
@@ -9,13 +9,14 @@ export default async function Services() {
     sdk.getServicesPage(),
     sdk.getServices(),
   ]);
-
-  servicesData.Services.docs.sort(comparePriorities);
+  const services = servicesData.Services?.docs;
+  if (!services) return;
+  const truthyServices = services.filter(isTruthy);
 
   return (
     <main className="items-center p-4">
       <div className="container justify-center">
-        {pageData.ServicesPage.mainBody}
+        {pageData.ServicesPage?.mainBody}
       </div>
 
       <div className="h-3" />
@@ -26,7 +27,7 @@ export default async function Services() {
           <div className="w-full justify-center">
             <div>
               <ContactForm
-                services={servicesData.Services.docs}
+                services={truthyServices}
                 step0Header={ServicesAttributes.step0_header}
                 step1Header={ServicesAttributes.step1_header}
                 attributionFieldPrompt={

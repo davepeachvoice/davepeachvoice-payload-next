@@ -19,7 +19,7 @@ const Head: FC = () => {
       <title>{title}</title>
       <meta name="description" content={description}></meta>
       <meta property="og:title" content={title}></meta>
-      <meta property="og:url" content={pathname}></meta>
+      <meta property="og:url" content={pathname ?? undefined}></meta>
       <meta property="og:type" content="article"></meta>
       <meta property="og:image" content={metaImage}></meta>
       <meta property="og:description" content={description}></meta>

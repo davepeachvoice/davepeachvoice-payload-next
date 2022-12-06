@@ -1,22 +1,20 @@
 import HomeHero from '../components/HomeHero';
 import Players from '../components/Media/Players';
-import { comparePriorities } from '../lib/compare-priorities';
+import { isTruthy } from '../lib/is-truthy';
 import { sdk } from '../lib/payload-gql-client';
 
 export default async function Index() {
-  const portfolioItems = await sdk.getHomePortfolioItems();
-  const sortedPortfolioItems = [...portfolioItems.PortfolioItems.docs].sort(
-    comparePriorities
-  );
-  const sortedTransformedPortfolioItems = sortedPortfolioItems.map((item) => ({
-    ...item,
-    category: item.category.title,
-  }));
+  const portfolioItemsQuery = await sdk.getHomePortfolioItems();
+  const portfolioItems =
+    portfolioItemsQuery.PortfolioItems?.docs?.filter(isTruthy);
+
+  if (!portfolioItems) return null;
+  const truthyPortfolioItems = portfolioItems.filter(isTruthy);
 
   return (
     <>
       <HomeHero />
-      <Players portfolioItems={sortedTransformedPortfolioItems} />
+      <Players portfolioItems={truthyPortfolioItems} />
     </>
   );
 }

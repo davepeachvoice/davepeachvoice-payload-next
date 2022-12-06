@@ -4,7 +4,10 @@ import { CSSProperties, useState } from 'react';
 import { PortfolioItemDataInterface } from './PortfolioItemInterface';
 
 interface CardProps {
-  item: PortfolioItemDataInterface;
+  item: Pick<
+    PortfolioItemDataInterface,
+    'thumbnail_source' | 'title' | 'media_type'
+  >;
   onClick: () => void;
 }
 

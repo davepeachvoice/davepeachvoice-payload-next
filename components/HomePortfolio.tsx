@@ -1,12 +1,9 @@
-import React from 'react';
-import { PortfolioItemInterface } from './PortfolioItems/PortfolioItemInterface';
+import { PortfolioItemDataInterface } from './PortfolioItems/PortfolioItemInterface';
 import PortfolioItems from './PortfolioItems/PortfolioItems';
 
 interface Props {
-  setPlayingPortfolioItem: React.Dispatch<
-    React.SetStateAction<PortfolioItemInterface>
-  >;
-  portfolioItems: PortfolioItemInterface[];
+  setPlayingPortfolioItem: (item: PortfolioItemDataInterface) => unknown;
+  portfolioItems: PortfolioItemDataInterface[];
 }
 
 export default function HomePortfolio(props: Props) {

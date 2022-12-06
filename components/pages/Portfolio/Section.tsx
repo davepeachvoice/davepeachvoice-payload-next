@@ -1,15 +1,12 @@
 'use client';
 
-import React from 'react';
-import { PortfolioItemInterface } from '../../PortfolioItems/PortfolioItemInterface';
+import { PortfolioItemDataInterface } from '../../PortfolioItems/PortfolioItemInterface';
 import PortfolioItems from '../../PortfolioItems/PortfolioItems';
 
 interface Props {
   name: string;
-  items: PortfolioItemInterface[];
-  setPlayingPortfolioItem: React.Dispatch<
-    React.SetStateAction<PortfolioItemInterface>
-  >;
+  items: PortfolioItemDataInterface[];
+  setPlayingPortfolioItem: (item: PortfolioItemDataInterface) => unknown;
 }
 
 export default function Section(props: Props) {

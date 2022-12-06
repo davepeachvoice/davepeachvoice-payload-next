@@ -77,6 +77,7 @@ export const PortfolioItem: CollectionConfig = {
       label: 'Category',
       type: 'relationship',
       relationTo: PortfolioCategory.slug,
+      required: true,
     },
     {
       name: 'priority',

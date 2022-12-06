@@ -11,7 +11,9 @@
   "ignoreWords": [
     "copyfiles",
     "davepeachvoice",
+    "gqlcode",
     "gqlgen",
+    "gqlschema",
     "headlessui",
     "nextjs",
     "pdpatf",

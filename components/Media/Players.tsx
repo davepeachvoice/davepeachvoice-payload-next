@@ -5,17 +5,17 @@ import * as UnlockMediaElement from '../../lib/unlock-media-element';
 import HomeExperience from '../HomeExperience';
 import HomePortfolio from '../HomePortfolio';
 import HomeAudio from '../pages/Home/HomeAudio/HomeAudio';
-import { PortfolioItemInterface } from '../PortfolioItems/PortfolioItemInterface';
+import { PortfolioItemDataInterface } from '../PortfolioItems/PortfolioItemInterface';
 import VideoModal from './VideoModal';
 
 export interface Props {
-  portfolioItems: PortfolioItemInterface[];
+  portfolioItems: PortfolioItemDataInterface[];
 }
 
 const Players: FC<Props> = (props) => {
   const [playingPortfolioItem, setPlayingPortfolioItem] =
-    useState<PortfolioItemInterface>(null);
-  const [mediaElement, setMediaElement] = useState<HTMLAudioElement>(null);
+    useState<PortfolioItemDataInterface>();
+  const [mediaElement, setMediaElement] = useState<HTMLAudioElement>();
 
   function handleFirstUserInteraction() {
     // did we already handle the first user interaction?
@@ -42,10 +42,12 @@ const Players: FC<Props> = (props) => {
           portfolioItem={playingPortfolioItem}
           mediaElement={mediaElement}
         ></AudioWaveform> */}
-        <VideoModal
-          portfolioItem={playingPortfolioItem}
-          setPortfolioItem={setPlayingPortfolioItem}
-        ></VideoModal>
+        {playingPortfolioItem && (
+          <VideoModal
+            portfolioItem={playingPortfolioItem}
+            setPortfolioItem={setPlayingPortfolioItem}
+          />
+        )}
       </div>
     </>
   );

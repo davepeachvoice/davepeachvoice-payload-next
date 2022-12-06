@@ -46,7 +46,9 @@ const useAnimationFrame = (callback: (deltaTime: number) => void) => {
 
   React.useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(requestRef.current);
+    return () => {
+      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+    };
   }, [animate]); // Make sure the effect runs only once
 };
 
@@ -61,18 +63,20 @@ export default function AudioVisualizer(props: Props) {
   useAnimationFrame(() => {
     // Pass on a function to the setter of the state
     // to make sure we always have the latest state
-    function adjustFreqBandStyle(newAmplitudeData) {
+    function adjustFreqBandStyle(newAmplitudeData: any) {
       amplitudeValues.current = newAmplitudeData;
       const domElements = frequencyBandArray.map((num) =>
         document.getElementById(`${num}`)
       );
       for (let i = 0; i < frequencyBandArray.length; i++) {
         const num = frequencyBandArray[i];
-        domElements[num].style.backgroundColor = `rgb(25, ${
+        const el = domElements[num];
+        if (!el || !amplitudeValues.current) continue;
+        el.style.backgroundColor = `rgb(25, ${
           amplitudeValues.current[num] / 3
         }, ${amplitudeValues.current[num] / 3})`;
         const percentage = (amplitudeValues.current[num] / 255) * 100;
-        domElements[num].style.height = `${percentage}%`;
+        el.style.height = `${percentage}%`;
       }
     }
     props.getFrequencyData(adjustFreqBandStyle);

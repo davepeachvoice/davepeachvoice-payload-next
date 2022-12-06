@@ -1,0 +1,15 @@
+query getPortfolioItems {
+  PortfolioItems(sort: "-priority") {
+    docs {
+      title
+      priority
+      media_type
+      media_source
+      thumbnail_source
+      category {
+        title
+        priority
+      }
+    }
+  }
+}

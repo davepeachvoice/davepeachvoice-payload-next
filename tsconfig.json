@@ -5,8 +5,6 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "strictNullChecks": false, // TODO: remove this line
-    "noImplicitAny": false, // TODO: remove this line
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,

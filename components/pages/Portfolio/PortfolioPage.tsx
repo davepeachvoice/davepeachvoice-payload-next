@@ -2,11 +2,13 @@
 
 // import dynamic from 'next/dynamic';
 import React, { FC } from 'react';
-import { PortfolioCategory } from '../../../import-portfolio-data';
 import * as UnlockMediaElement from '../../../lib/unlock-media-element';
 import VideoModal from '../../Media/VideoModal';
 import Portfolio from '../../Portfolio';
-import { PortfolioItemInterface } from '../../PortfolioItems/PortfolioItemInterface';
+import {
+  PortfolioCategory,
+  PortfolioItemDataInterface,
+} from '../../PortfolioItems/PortfolioItemInterface';
 
 // const AudioWaveform = dynamic(() => import('../../Media/AudioWaveform'), {
 //   suspense: true,
@@ -19,9 +21,8 @@ export interface Props {
 
 const PortfolioPage: FC<Props> = (props) => {
   const [playingPortfolioItem, setPlayingPortfolioItem] =
-    React.useState<PortfolioItemInterface>(null);
-  const [mediaElement, setMediaElement] =
-    React.useState<HTMLAudioElement>(null);
+    React.useState<PortfolioItemDataInterface>();
+  const [mediaElement, setMediaElement] = React.useState<HTMLAudioElement>();
 
   function handleFirstUserInteraction() {
     // did we already handle the first user interaction?
@@ -47,10 +48,12 @@ const PortfolioPage: FC<Props> = (props) => {
           mediaElement={mediaElement}
         ></AudioWaveform>
       </Suspense> */}
-      <VideoModal
-        portfolioItem={playingPortfolioItem}
-        setPortfolioItem={setPlayingPortfolioItem}
-      ></VideoModal>
+      {playingPortfolioItem && (
+        <VideoModal
+          portfolioItem={playingPortfolioItem}
+          setPortfolioItem={setPlayingPortfolioItem}
+        />
+      )}
     </div>
   );
 };

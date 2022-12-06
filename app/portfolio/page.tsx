@@ -1,64 +1,39 @@
+import type { DeepPick } from 'ts-deep-pick';
 import PortfolioPage from '../../components/pages/Portfolio/PortfolioPage';
-import { PortfolioItemInterface } from '../../components/PortfolioItems/PortfolioItemInterface';
-import {
-  importPortfolioCategories,
-  importPortfolioItems,
-  PortfolioCategory,
-} from '../../import-portfolio-data';
-import { comparePriorities } from '../../lib/compare-priorities';
+import { PortfolioCategory } from '../../components/PortfolioItems/PortfolioItemInterface';
+import { isTruthy } from '../../lib/is-truthy';
+import { sdk } from '../../lib/payload-gql-client';
 
 export default async function Page() {
-  const portfolioItemsMarkdownData = await importPortfolioItems();
+  const portfolioItemsQuery = await sdk.getPortfolioItems();
+  const portfolioItems = portfolioItemsQuery.PortfolioItems?.docs ?? [];
+  const truthyPortfolioItems = portfolioItems.filter(isTruthy);
 
-  const portfolioItems = portfolioItemsMarkdownData.map(
-    (portfolioItemMarkdownData) => portfolioItemMarkdownData.attributes
-  );
-
-  const portfolioItemsCategoriesMarkdownData =
-    await importPortfolioCategories();
-
-  const portfolioCategories = portfolioItemsCategoriesMarkdownData.map(
-    (portfolioItemMarkdownData) => portfolioItemMarkdownData.attributes
-  );
-
-  // group portfolio items into their categories and sort them by priority
-  const portfolioData = buildPortfolioCategories(
-    portfolioItems,
-    portfolioCategories
-  );
-
-  return <PortfolioPage portfolioData={portfolioData} />;
-}
-
-function buildPortfolioCategories(
-  portfolioItems: PortfolioItemInterface[],
-  portfolioCategories: PortfolioCategory[]
-) {
-  // also accept categories and build categories const from those categories
   const categories: Record<
     string,
-    Pick<PortfolioCategory, 'priority' | 'items'>
+    DeepPick<
+      PortfolioCategory,
+      | 'priority'
+      | 'items.[].title'
+      | 'items.[].media_type'
+      | 'items.[].media_source'
+      | 'items.[].thumbnail_source'
+    >
   > = {};
 
-  // build categories
-  for (const portfolioCategory of portfolioCategories) {
-    categories[portfolioCategory.title] = {
-      priority: portfolioCategory.priority,
-      items: [],
-    };
+  // group items by category
+  for (const item of truthyPortfolioItems) {
+    if (!item.category) continue;
+    if (!categories[item.category.title]) {
+      categories[item.category.priority] = {
+        priority: item.category.priority,
+        items: [],
+      };
+    }
+    categories[item.category.priority].items.push(item);
   }
 
-  // populate categories with matching items
-  for (const portfolioItem of portfolioItems) {
-    categories[portfolioItem.category].items.push(portfolioItem);
-  }
-
-  // sort portfolio items within each category
-  for (const category in categories) {
-    categories[category].items.sort(comparePriorities);
-  }
-
-  // sort categories by category priority
+  // sort categories by priority
   const categoriesArray = Object.entries(categories);
   const sortedCategoriesArray = categoriesArray.sort((firstEl, secondEl) => {
     const firstElCategoryData = firstEl[1];
@@ -71,6 +46,5 @@ function buildPortfolioCategories(
     return 0;
   });
 
-  // must return array rather than object keyed by category names because the order of the elements matters
-  return sortedCategoriesArray;
+  return <PortfolioPage portfolioData={sortedCategoriesArray} />;
 }

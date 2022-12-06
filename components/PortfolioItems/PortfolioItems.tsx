@@ -1,12 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Card from './Card';
-import { PortfolioItemInterface } from './PortfolioItemInterface';
+import { PortfolioItemDataInterface } from './PortfolioItemInterface';
 
 export interface Props {
-  items: PortfolioItemInterface[];
-  setPlayingPortfolioItem: React.Dispatch<
-    React.SetStateAction<PortfolioItemInterface>
-  >;
+  items: PortfolioItemDataInterface[];
+  setPlayingPortfolioItem: (item: PortfolioItemDataInterface) => unknown;
 }
 
 const PortfolioItems: FC<Props> = ({ items, setPlayingPortfolioItem }) => {

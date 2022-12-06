@@ -1,5 +1,5 @@
 query getServices {
-  Services {
+  Services(sort: "-priority") {
     docs {
       title
       priority

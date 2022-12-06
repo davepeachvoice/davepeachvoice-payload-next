@@ -36,10 +36,9 @@ export function ContactForm(props: Props) {
   const recaptchaRef = useRef<Recaptcha>();
   const [submitButtonEnabled, setSubmitButtonEnabled] = useState(false);
   const [fullFormVisible] = React.useState(false);
-  const [selectedServiceTitle, setSelectedServiceTitle] =
-    useState<string>(undefined);
+  const [selectedServiceTitle, setSelectedServiceTitle] = useState<string>();
   const [formStep, setFormStep] = useState(0);
-  const [formSubmissionMessage, setFormSubmissionMessage] = useState(undefined);
+  const [formSubmissionMessage, setFormSubmissionMessage] = useState<string>();
 
   function readyToNavigateToNextStep() {
     setFormStep(formStep + 1);
@@ -64,31 +63,35 @@ export function ContactForm(props: Props) {
         name="BasicServiceRequest"
       >
         <div className="z-10">
-          <SelectDropdown
-            options={options}
-            selectedId={selectedServiceTitle}
-            setSelectedId={(value) => setSelectedServiceTitle(value)}
-            name="type"
-          />
+          {selectedServiceTitle && (
+            <SelectDropdown
+              options={options}
+              selectedId={selectedServiceTitle}
+              setSelectedId={(value) => setSelectedServiceTitle(value)}
+              name="type"
+            />
+          )}
         </div>
 
         <div className="h-12" />
 
         <div>
-          <FormBody
-            visible={fullFormVisible}
-            formStep={formStep}
-            readyToNavigateToNextStep={readyToNavigateToNextStep}
-            readyToNavigateToPreviousStep={readyToNavigateToPreviousStep}
-            step0Header={props.step0Header}
-            step1Header={props.step1Header}
-            attributionFieldPrompt={props.attributionFieldPrompt}
-            attributionFieldOptions={props.attributionFieldOptions}
-            submitButtonEnabled={submitButtonEnabled}
-            setSubmitButtonEnabled={setSubmitButtonEnabled}
-            recaptchaRef={recaptchaRef}
-            submissionMessage={formSubmissionMessage}
-          />
+          {recaptchaRef.current && formSubmissionMessage && (
+            <FormBody
+              visible={fullFormVisible}
+              formStep={formStep}
+              readyToNavigateToNextStep={readyToNavigateToNextStep}
+              readyToNavigateToPreviousStep={readyToNavigateToPreviousStep}
+              step0Header={props.step0Header}
+              step1Header={props.step1Header}
+              attributionFieldPrompt={props.attributionFieldPrompt}
+              attributionFieldOptions={props.attributionFieldOptions}
+              submitButtonEnabled={submitButtonEnabled}
+              setSubmitButtonEnabled={setSubmitButtonEnabled}
+              recaptchaRef={recaptchaRef as any} // TODO
+              submissionMessage={formSubmissionMessage}
+            />
+          )}
         </div>
       </form>
     </div>
@@ -99,13 +102,17 @@ export function ContactForm(props: Props) {
 
     // TODO: better types
     const form = event.target as Element;
-    const recaptchaValue = recaptchaRef.current.getValue();
+    const recaptchaValue = recaptchaRef.current?.getValue();
+    if (!recaptchaValue) throw new Error('Form recaptcha value not found');
+
+    const formName = form.getAttribute('name');
+    if (!formName) throw new Error('Cannot determine form name');
 
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
-        'form-name': form.getAttribute('name'),
+        'form-name': formName,
         'g-recaptcha-response': recaptchaValue,
         ...value,
       }),
@@ -133,8 +140,11 @@ export function ContactForm(props: Props) {
 function encode(
   data: { 'form-name': string; 'g-recaptcha-response': string } & FormState
 ) {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+  const keys = Object.keys(data) as (keyof typeof data)[];
+  return keys
+    .map(
+      (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]!) // TODO
+    )
     .join('&');
 }
 
@@ -266,8 +276,8 @@ function FormButton(props: FormButtonProps) {
           borderRadius: '5px',
           paddingTop: '5px',
           paddingBottom: '5px',
-          backgroundColor: props.unfilled ? '#222' : null,
-          color: props.unfilled ? 'white' : null,
+          backgroundColor: props.unfilled ? '#222' : undefined,
+          color: props.unfilled ? 'white' : undefined,
         }}
         onClick={props.onClick}
         disabled={props.disabled}

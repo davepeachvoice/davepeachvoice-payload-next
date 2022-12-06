@@ -1,12 +1,11 @@
-import React from 'react';
 import PortfolioSection from './pages/Portfolio/Section';
-import { PortfolioCategory } from '../import-portfolio-data';
-import { PortfolioItemInterface } from './PortfolioItems/PortfolioItemInterface';
+import {
+  PortfolioCategory,
+  PortfolioItemDataInterface,
+} from './PortfolioItems/PortfolioItemInterface';
 
 interface Props {
-  setPlayingPortfolioItem: React.Dispatch<
-    React.SetStateAction<PortfolioItemInterface>
-  >;
+  setPlayingPortfolioItem: (item: PortfolioItemDataInterface) => unknown;
   portfolioData: [string, Pick<PortfolioCategory, 'priority' | 'items'>][];
 }
 

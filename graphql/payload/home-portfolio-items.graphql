@@ -1,5 +1,8 @@
 query getHomePortfolioItems {
-  PortfolioItems(where: { homepage_visible: { equals: true } }) {
+  PortfolioItems(
+    where: { homepage_visible: { equals: true } }
+    sort: "-priority"
+  ) {
     docs {
       __typename
       id

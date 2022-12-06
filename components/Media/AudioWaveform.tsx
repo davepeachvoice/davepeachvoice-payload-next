@@ -28,7 +28,7 @@ interface Props {
 export default function AudioWaveform(props: Props) {
   const HEIGHT = 75;
 
-  const [currentAudioSource, setCurrentAudioSource] = useState<string>(null);
+  const [currentAudioSource, setCurrentAudioSource] = useState<string>();
   const [playing, setPlaying] = useState<boolean>(false);
   const [bottomPosition, setBottomPosition] = useState<number>(-HEIGHT);
 
@@ -49,7 +49,7 @@ export default function AudioWaveform(props: Props) {
       wavesurferRef.current.load(audioSource);
 
       wavesurferRef.current.on('ready', () => {
-        wavesurferRef.current.play();
+        wavesurferRef.current?.play();
       });
 
       wavesurferRef.current.on('pause', () => {
@@ -63,15 +63,15 @@ export default function AudioWaveform(props: Props) {
   }
 
   function pause() {
-    wavesurferRef.current.pause();
+    wavesurferRef.current?.pause();
   }
 
   function togglePlay() {
-    wavesurferRef.current.playPause();
+    wavesurferRef.current?.playPause();
   }
 
   function hide() {
-    setCurrentAudioSource(null);
+    setCurrentAudioSource(undefined);
     setBottomPosition(-HEIGHT);
   }
 
@@ -132,9 +132,11 @@ export default function AudioWaveform(props: Props) {
         <Suspense>
           <WaveSurfer
             key={currentAudioSource}
-            onMount={(waveSurfer: WaveSurfer) =>
-              handleWSMount(waveSurfer, currentAudioSource)
-            }
+            onMount={(waveSurfer) => {
+              if (waveSurfer && currentAudioSource) {
+                handleWSMount(waveSurfer, currentAudioSource);
+              }
+            }}
             plugins={[]}
           >
             <WaveForm
