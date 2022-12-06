@@ -25,12 +25,12 @@ export default async function Page() {
   for (const item of truthyPortfolioItems) {
     if (!item.category) continue;
     if (!categories[item.category.title]) {
-      categories[item.category.priority] = {
+      categories[item.category.title] = {
         priority: item.category.priority,
         items: [],
       };
     }
-    categories[item.category.priority].items.push(item);
+    categories[item.category.title].items.push(item);
   }
 
   // sort categories by priority
