@@ -37,7 +37,9 @@ const PortfolioPage: FC<Props> = (props) => {
     <div
       onTouchStart={handleFirstUserInteraction}
       onClick={handleFirstUserInteraction}
+      className="px-8"
     >
+      <div className="h-4" />
       <Portfolio
         portfolioData={props.portfolioData}
         setPlayingPortfolioItem={setPlayingPortfolioItem}

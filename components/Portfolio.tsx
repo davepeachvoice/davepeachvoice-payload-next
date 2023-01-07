@@ -11,7 +11,7 @@ interface Props {
 
 export default function Portfolio(props: Props) {
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       {props.portfolioData.map((portfolioCategory) => (
         <PortfolioSection
           key={portfolioCategory[0]}

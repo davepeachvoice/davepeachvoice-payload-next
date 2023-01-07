@@ -29,7 +29,7 @@ const Layout: FC<Props> = ({ children }) => {
             <div className="flex flex-wrap items-center justify-center gap-2">
               <SocialIcons></SocialIcons>
               <div className="align-center flex h-full w-full justify-center text-[silver]">
-                Copyright © {new Date().getFullYear()} Dave Peach
+                Copyright ©{new Date().getFullYear()} Dave Peach
               </div>
             </div>
           </footer>

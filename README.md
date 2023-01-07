@@ -13,9 +13,12 @@ yarn install
 npm run dev
 
 # graphql codegen based on served schema
-yarn run generate:gqlcode
+yarn run generate:gql:code
+```
 
-# run production build
+## Run production build
+
+```sh
 yarn run build && yarn run start
 ```
 

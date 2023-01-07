@@ -46,10 +46,10 @@ const NavigationBar = () => {
           ></div>
         </div>
         <div className="flex flex-row justify-end gap-6">
-          <Link className="text-lg text-orange-400" href="/portfolio">
+          <Link className="text-lg text-orange-500" href="/portfolio">
             Portfolio
           </Link>
-          <Link className="text-lg text-orange-400" href="/services">
+          <Link className="text-lg text-orange-500" href="/services">
             Services
           </Link>
         </div>
